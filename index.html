@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VillageVerse – A Tiny Living Village</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🏡</div>
+      <div>
+        <h1>VillageVerse</h1>
+        <p class="tagline">A Tiny Living Village</p>
+      </div>
+    </div>
+
+    <div class="clock" title="Village time">
+      <div class="clock-icon" id="clockIcon">🌅</div>
+      <div class="clock-text">
+        <div class="clock-day" id="clockDay">Day 1</div>
+        <div class="clock-time" id="clockTime">06:20</div>
+      </div>
+      <div class="clock-right">
+        <div class="clock-phase" id="clockPhase">Dawn</div>
+        <div class="daybar"><div class="daybar-fill" id="daybarFill"></div><div class="daybar-sun" id="daybarSun"></div></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="btnPause" class="btn btn-primary" title="Pause / resume (Space)">⏸ Pause</button>
+      <div class="speed" id="speedGroup" role="group" aria-label="Simulation speed">
+        <span class="speed-label">Speed</span>
+        <button data-speed="1" class="active" title="Normal speed (1)">1×</button>
+        <button data-speed="2" title="Double speed (2)">2×</button>
+        <button data-speed="4" title="Fast (3)">4×</button>
+        <button data-speed="8" title="Very fast (4)">8×</button>
+      </div>
+      <button id="btnHelp" class="btn" title="How to play">❓ Help</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="stage">
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="world" aria-label="Village map"></canvas>
+        <div id="tooltip" class="tooltip hidden"></div>
+        <div id="toasts" class="toasts"></div>
+        <div id="pausedBadge" class="paused-badge hidden">⏸ PAUSED</div>
+        <div class="map-hint">🖱️ Click a villager to peek into their life · <kbd>Space</kbd> pause · <kbd>1</kbd>–<kbd>4</kbd> speed</div>
+      </div>
+      <div class="roster" id="roster" aria-label="Villagers"></div>
+    </section>
+
+    <aside class="sidebar">
+      <nav class="tabs" id="tabs">
+        <button data-tab="villager">🧑 Villager</button>
+        <button data-tab="log" class="active">📜 Log</button>
+        <button data-tab="rumours">🗣️ Rumours</button>
+        <button data-tab="village">📊 Village</button>
+      </nav>
+      <div class="tab-body" id="tabBody">
+        <div id="tab-villager" class="tab-pane"></div>
+        <div id="tab-log" class="tab-pane active">
+          <div class="log-filters" id="logFilters">
+            <button data-filter="all" class="active">All</button>
+            <button data-filter="social">💬 Social</button>
+            <button data-filter="trade">💰 Trade</button>
+            <button data-filter="rumour">🗣️ Rumour</button>
+            <button data-filter="conflict">⚡ Conflict</button>
+            <button data-filter="milestone">💛 Bonds</button>
+          </div>
+          <ul class="log-list" id="logList"></ul>
+        </div>
+        <div id="tab-rumours" class="tab-pane"></div>
+        <div id="tab-village" class="tab-pane"></div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="intro" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-banner">
+        <div class="modal-logo">🏡</div>
+        <h2>Welcome to <span>VillageVerse</span></h2>
+        <p>A tiny living village of 12 souls — each with their own needs, memories, friendships, grudges and gossip.</p>
+      </div>
+      <div class="modal-grid">
+        <div class="feature"><span>🧠</span><div><b>They remember</b><br>Every chat, trade, gift and argument becomes a memory that shapes how they feel about each other.</div></div>
+        <div class="feature"><span>🗣️</span><div><b>Rumours spread &amp; twist</b><br>Gossip passes from villager to villager and gets exaggerated — or blamed on someone else — along the way.</div></div>
+        <div class="feature"><span>📔</span><div><b>They keep diaries</b><br>Each villager writes a diary in their own voice, made from what actually happened to them.</div></div>
+        <div class="feature"><span>🌗</span><div><b>Day &amp; night</b><br>They wake, work, trade, eat, socialise in the evening glow and go home to sleep.</div></div>
+      </div>
+      <div class="howto">
+        <h3>How to play</h3>
+        <ul>
+          <li>🖱️ <b>Click a villager</b> on the map (or in the roster under it) to open their needs, relationships, memories, diary and rumours.</li>
+          <li>⏸ <b>Pause/Resume</b> with the button or <kbd>Space</kbd>. Change speed with <b>1× 2× 4× 8×</b> or keys <kbd>1</kbd>–<kbd>4</kbd>.</li>
+          <li>📜 The <b>Log</b> shows everything happening live. 🗣️ <b>Rumours</b> follows each piece of gossip as it changes. 📊 <b>Village</b> shows who likes whom.</li>
+          <li>💡 Tip: run at 4× for a minute, then open someone's <b>Diary</b>.</li>
+        </ul>
+      </div>
+      <button id="btnStart" class="btn btn-primary btn-big">🌻 Enter the Village</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
